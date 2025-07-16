@@ -97,7 +97,7 @@ const Sidebar = () => {
                   href="#"
                   className="text-primary hover:bg-primary/80 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-neutral-900 transition-colors hover:text-white"
                 >
-                  <LogOut className="h-5 w-5 text-red-500" />
+                  <LogOut className="h-5 w-5" />
                   <span className="sr-only">Sair</span>
                 </Link>
               </TooltipTrigger>
