@@ -36,6 +36,16 @@ import {
 
 import { Label } from "@/components/ui/label";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 const JogadoresPage = () => {
   return (
     <div className="flex-1 space-y-4 p-4 pt-6 md:p-8">
@@ -73,6 +83,20 @@ const JogadoresPage = () => {
                       name="phone"
                       placeholder="31 99999-9999"
                     />
+                  </div>
+                  <div className="my-2 grid gap-3">
+                    <Label htmlFor="username-1">Status</Label>
+                    <Select>
+                      <SelectTrigger className="w-[180px] bg-input">
+                        <SelectValue placeholder="Selecione o status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="active">Ativo</SelectItem>
+                          <SelectItem value="disabled">Desativado</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
                 <DialogFooter>
