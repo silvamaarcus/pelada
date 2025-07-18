@@ -41,7 +41,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -87,7 +86,7 @@ const JogadoresPage = () => {
                   <div className="my-2 grid gap-3">
                     <Label htmlFor="username-1">Status</Label>
                     <Select>
-                      <SelectTrigger className="w-[180px] bg-input">
+                      <SelectTrigger className="bg-input w-[180px]">
                         <SelectValue placeholder="Selecione o status" />
                       </SelectTrigger>
                       <SelectContent>
