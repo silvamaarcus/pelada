@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -22,61 +22,74 @@ import {
 } from "@/components/ui/table";
 
 import { jogadoresAvulsoData, jogadoresMensalData } from "@/mocks";
+
 import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import { Label } from "@/components/ui/label";
 
 const JogadoresPage = () => {
-  const [modal, setModal] = useState(false);
-
-  const abrirModal = () => {
-    console.log("Adicionar Jogador");
-    setModal(true);
-  };
-
   return (
     <div className="flex-1 space-y-4 p-4 pt-6 md:p-8">
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-3xl font-bold tracking-tight">Jogadores</h2>
         <div className="flex items-center space-x-2">
-          <Button
-            className="bg-secondary hover:bg-secondary/60 cursor-pointer text-neutral-900"
-            onClick={abrirModal}
-          >
-            <UserPlus className="mr-2 h-4 w-4" />
-            Adicionar Mensalista
-          </Button>
+          <Dialog>
+            <form>
+              <DialogTrigger asChild>
+                <Button className="bg-secondary hover:bg-secondary/60 cursor-pointer text-neutral-900">
+                  <UserPlus className="mr-2 h-4 w-4" />
+                  Adicionar Mensalista
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Adicionar um mensalista</DialogTitle>
+                  <DialogDescription>
+                    Adicione um novo jogador mensalista ao sistema.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4">
+                  <div className="grid gap-3">
+                    <Label htmlFor="name-1">Nome</Label>
+                    <Input
+                      id="name-1"
+                      name="name"
+                      placeholder="Cristiano Ronaldo"
+                    />
+                  </div>
+                  <div className="grid gap-3">
+                    <Label htmlFor="username-1">Telefone</Label>
+                    <Input
+                      id="phone-1"
+                      name="phone"
+                      placeholder="31 99999-9999"
+                    />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">Cancelar</Button>
+                  </DialogClose>
+                  <Button
+                    type="submit"
+                    className="bg-secondary hover:bg-secondary/60 cursor-pointer text-neutral-900"
+                  >
+                    Salvar
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </form>
+          </Dialog>
         </div>
-
-        {modal && (
-          <>
-            <Drawer>
-              <DrawerTrigger>Open</DrawerTrigger>
-              <DrawerContent>
-                <DrawerHeader>
-                  <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                  <DrawerDescription>
-                    This action cannot be undone.
-                  </DrawerDescription>
-                </DrawerHeader>
-                <DrawerFooter>
-                  <Button>Submit</Button>
-                  <DrawerClose>
-                    <Button variant="outline">Cancel</Button>
-                  </DrawerClose>
-                </DrawerFooter>
-              </DrawerContent>
-            </Drawer>
-            <h1>Abriu Modal!</h1>
-          </>
-        )}
       </div>
 
       <div className="flex items-center space-x-2">
@@ -172,10 +185,7 @@ const JogadoresPage = () => {
             </TableHeader>
             <TableBody>
               {jogadoresMensalData.map((jogador, index) => (
-                <TableRow
-                  className="border-b border-neutral-600"
-                  key={index}
-                >
+                <TableRow className="border-b border-neutral-600" key={index}>
                   <TableCell className="max-w-[300px] min-w-[150px] overflow-hidden font-medium text-ellipsis whitespace-nowrap">
                     {jogador.nome}
                   </TableCell>
